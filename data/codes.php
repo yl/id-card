@@ -2,7 +2,7 @@
 
 /**
  * 2017年5月中华人民共和国县以上行政区划代码
- * http://www.mca.gov.cn/article/sj/tjbz/a/2017/201705/201706301407.html
+ * http://www.mca.gov.cn/article/sj/tjbz/a/2017/201705/201706301407.html.
  */
 return [
     '110000' => '北京市',
