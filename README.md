@@ -1,3 +1,5 @@
+[![StyleCI](https://styleci.io/repos/98876454/shield?branch=master)](https://styleci.io/repos/98876454)
+
 # IDCard
 身份证号校验及信息获取
 
