@@ -1,4 +1,10 @@
 [![StyleCI](https://styleci.io/repos/98876454/shield?branch=master)](https://styleci.io/repos/98876454)
+[![Latest Stable Version](https://poser.pugx.org/leonis/id-card/v/stable)](https://packagist.org/packages/leonis/id-card)
+[![Latest Unstable Version](https://poser.pugx.org/leonis/id-card/v/unstable)](https://packagist.org/packages/leonis/id-card)
+[![Total Downloads](https://poser.pugx.org/leonis/id-card/downloads)](https://packagist.org/packages/leonis/id-card)
+[![Monthly Downloads](https://poser.pugx.org/leonis/id-card/d/monthly)](https://packagist.org/packages/leonis/id-card)
+[![Daily Downloads](https://poser.pugx.org/leonis/id-card/d/daily)](https://packagist.org/packages/leonis/id-card)
+[![License](https://poser.pugx.org/leonis/id-card/license)](https://packagist.org/packages/leonis/id-card)
 
 # IDCard
 身份证号校验及信息获取
