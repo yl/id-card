@@ -37,5 +37,8 @@ $idCard->constellation();   // 获取星座 return string or false
 $idCard->zodiac();          // 获取属相 return string or false
 ```
  
+## TODO
+phpunit and Travis CI
+ 
 ## License
 MIT
