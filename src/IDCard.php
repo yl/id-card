@@ -5,7 +5,7 @@ namespace Leonis\IDCard;
 class IDCard
 {
     /**
-     * 身份证号
+     * 身份证号.
      *
      * @var string
      */
@@ -20,12 +20,12 @@ class IDCard
 
     public function __construct(string $id)
     {
-        $this->id        = strtoupper($id);
-        $this->areaCodes = (array)require 'C:\Users\lN\Desktop\lianbi-web\vendor\leonis\id\data\codes.php';
+        $this->id = strtoupper($id);
+        $this->areaCodes = (array) require 'C:\Users\lN\Desktop\lianbi-web\vendor\leonis\id\data\codes.php';
     }
 
     /**
-     * 验证身份号
+     * 验证身份号.
      *
      * @return bool
      */
@@ -47,15 +47,15 @@ class IDCard
     }
 
     /**
-     * 验证生日
+     * 验证生日.
      *
      * @return bool
      */
     public function checkBirthday()
     {
-        $year  = substr($this->id, 6, 4);
+        $year = substr($this->id, 6, 4);
         $month = substr($this->id, 10, 2);
-        $day   = substr($this->id, 12, 2);
+        $day = substr($this->id, 12, 2);
 
         return checkdate($month, $day, $year);
     }
@@ -68,9 +68,9 @@ class IDCard
     public function checkCode()
     {
         $weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
-        $codes  = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
-        $code   = substr($this->id, 17, 1);
-        $sum    = 0;
+        $codes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+        $code = substr($this->id, 17, 1);
+        $sum = 0;
         for ($i = 0; $i < 17; $i++) {
             $sum += substr(substr($this->id, 0, 17), $i, 1) * $weight[$i];
         }
@@ -82,11 +82,12 @@ class IDCard
      * 获取地址
      *
      * @param string $separator
+     *
      * @return bool|string
      */
     public function address(string $separator = '')
     {
-        return $this->check() ? $this->province() . $separator . $this->city() . $separator . $this->zone() : false;
+        return $this->check() ? $this->province().$separator.$this->city().$separator.$this->zone() : false;
     }
 
     /**
@@ -96,7 +97,7 @@ class IDCard
      */
     public function province()
     {
-        $provinceCode = substr($this->id, 0, 2) . '0000';
+        $provinceCode = substr($this->id, 0, 2).'0000';
 
         return $this->check() ? $this->areaCodes[$provinceCode] : false;
     }
@@ -108,13 +109,13 @@ class IDCard
      */
     public function city()
     {
-        $cityCode = substr($this->id, 0, 4) . '00';
+        $cityCode = substr($this->id, 0, 4).'00';
 
         return $this->check() ? $this->areaCodes[$cityCode] : false;
     }
 
     /**
-     * 获取区
+     * 获取区.
      *
      * @return bool|mixed
      */
@@ -126,60 +127,61 @@ class IDCard
     }
 
     /**
-     * 获取生日
+     * 获取生日.
      *
      * @param string $format
+     *
      * @return bool|string
      */
     public function birthday(string $format)
     {
-        return date($format, strtotime($this->year() . '-' . $this->month() . '-' . $this->day()));
+        return date($format, strtotime($this->year().'-'.$this->month().'-'.$this->day()));
     }
 
     /**
-     * 获取年
+     * 获取年.
      *
      * @return int
      */
     public function year()
     {
-        return (int)substr($this->id, 6, 4);
+        return (int) substr($this->id, 6, 4);
     }
 
     /**
-     * 获取月
+     * 获取月.
      *
      * @return int
      */
     public function month()
     {
-        return (int)substr($this->id, 10, 2);
+        return (int) substr($this->id, 10, 2);
     }
 
     /**
-     * 获取日
+     * 获取日.
      *
      * @return int
      */
     public function day()
     {
-        return (int)substr($this->id, 12, 2);
+        return (int) substr($this->id, 12, 2);
     }
 
     /**
-     * 获取年龄
+     * 获取年龄.
      *
      * @return false|int|string
      */
     public function age()
     {
-        if (! $this->check()) {
+        if (!$this->check()) {
             return false;
         }
 
-        $year  = substr($this->id, 6, 4);
+        $year = substr($this->id, 6, 4);
         $month = substr($this->id, 10, 12);
-        $day   = substr($this->id, 12, 14);
+        $day = substr($this->id, 12, 14);
 
         $age = 0;
         if (date('Y') > $year) {
@@ -197,7 +199,8 @@ class IDCard
     }
 
     /**
-     * 获取性别
+     * 获取性别.
+     *
      * @return bool|string 身份证号未通过验证返回 false
      */
     public function sex()
@@ -206,21 +209,21 @@ class IDCard
     }
 
     /**
-     * 获取星座
+     * 获取星座.
      *
      * @return bool|mixed
      */
     public function constellation()
     {
-        if (! $this->check()) {
+        if (!$this->check()) {
             return false;
         }
 
-        $constellation     = ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '魔羯座'];
+        $constellation = ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '魔羯座'];
         $constellationDays = [21, 20, 21, 20, 21, 22, 23, 23, 23, 24, 22, 21];
 
         $month = $this->month() - 1;
-        $day   = $this->day();
+        $day = $this->day();
 
         if ($day < $constellationDays[$month - 1]) {
             $month--;
@@ -234,17 +237,17 @@ class IDCard
     }
 
     /**
-     * 获取属相
+     * 获取属相.
      *
      * @return bool|string
      */
     public function zodiac()
     {
-        if (! $this->check()) {
+        if (!$this->check()) {
             return false;
         }
 
-        $year  = $this->year();
+        $year = $this->year();
         $index = $year > 1901 ? ($year - 1901) % 12 : (1901 - $year) % 12;
 
         switch ($index) {
