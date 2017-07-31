@@ -21,7 +21,7 @@ class IDCard
     public function __construct(string $id)
     {
         $this->id = strtoupper($id);
-        $this->areaCodes = (array) require 'C:\Users\lN\Desktop\lianbi-web\vendor\leonis\id\data\codes.php';
+        $this->areaCodes = (array) require __DIR__.'../data/codes.php';
     }
 
     /**
