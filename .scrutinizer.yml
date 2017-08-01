@@ -18,8 +18,6 @@ build:
         override:
             -
                 command: vendor/bin/phpunit --coverage-clover=package-coverage-file
-                command: wget https://scrutinizer-ci.com/ocular.phar
-                command: php ocular.phar code-coverage:upload --format=php-clover package-coverage-file
                 coverage:
                     file: package-coverage-file
                     format: clover
