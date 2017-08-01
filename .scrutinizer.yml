@@ -17,7 +17,7 @@ build:
     tests:
         override:
             -
-                command: phpunit --coverage-clover=package-coverage-file
+                command: vendor/bin/phpunit --coverage-clover=package-coverage-file
                 coverage:
                     file: package-coverage-file
                     format: clover
