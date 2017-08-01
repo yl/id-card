@@ -183,13 +183,17 @@ class IDCard
         $month = $this->month();
         $day = $this->day();
 
+        $nowYear = (int)date('Y');
+        $nowMonth = (int)date('n');
+        $nowDay = (int)date('j');
+
         $age = 0;
-        if (date('Y') > $year) {
-            $age = date('Y') - $year - 1;
-            if (date('m') > $month) {
+        if ($nowYear > $year) {
+            $age = $nowYear - $year - 1;
+            if ($nowMonth > $month) {
                 $age++;
-            } elseif (date('m') == $month) {
-                if (date('d') >= $day) {
+            } elseif ($nowMonth === $month) {
+                if ($nowDay >= $day) {
                     $age++;
                 }
             }
@@ -225,15 +229,11 @@ class IDCard
         $month = $this->month() - 1;
         $day = $this->day();
 
-        if ($day < $constellationDays[$month - 1]) {
+        if ($day < $constellationDays[$month]) {
             $month--;
         }
 
-        if ($month > 0) {
-            return $constellation[$month];
-        }
-
-        return $constellation[11];
+        return $month >= 0 ? $constellation[$month] : $constellation[11];
     }
 
     /**
