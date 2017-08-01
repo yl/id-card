@@ -1,10 +1,9 @@
 [![StyleCI](https://styleci.io/repos/98876454/shield?branch=master)](https://styleci.io/repos/98876454)
 [![Build Status](https://travis-ci.org/yangliulnn/id-card.svg?branch=master)](https://travis-ci.org/yangliulnn/id-card)
+[![Build Status](https://scrutinizer-ci.com/g/yangliulnn/id-card/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yangliulnn/id-card/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yangliulnn/id-card/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yangliulnn/id-card/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/leonis/id-card/v/stable)](https://packagist.org/packages/leonis/id-card)
-[![Latest Unstable Version](https://poser.pugx.org/leonis/id-card/v/unstable)](https://packagist.org/packages/leonis/id-card)
 [![Total Downloads](https://poser.pugx.org/leonis/id-card/downloads)](https://packagist.org/packages/leonis/id-card)
-[![Monthly Downloads](https://poser.pugx.org/leonis/id-card/d/monthly)](https://packagist.org/packages/leonis/id-card)
-[![Daily Downloads](https://poser.pugx.org/leonis/id-card/d/daily)](https://packagist.org/packages/leonis/id-card)
 [![License](https://poser.pugx.org/leonis/id-card/license)](https://packagist.org/packages/leonis/id-card)
 
 # IDCard
@@ -37,9 +36,6 @@ $idCard->sex();             // 获取性别 return string or false
 $idCard->constellation();   // 获取星座 return string or false
 $idCard->zodiac();          // 获取属相 return string or false
 ```
- 
-## TODO
-phpunit and Travis CI
  
 ## License
 MIT
