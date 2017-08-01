@@ -1,4 +1,5 @@
 [![StyleCI](https://styleci.io/repos/98876454/shield?branch=master)](https://styleci.io/repos/98876454)
+[![Build Status](https://travis-ci.org/yangliulnn/id-card.svg?branch=master)](https://travis-ci.org/yangliulnn/id-card)
 [![Latest Stable Version](https://poser.pugx.org/leonis/id-card/v/stable)](https://packagist.org/packages/leonis/id-card)
 [![Latest Unstable Version](https://poser.pugx.org/leonis/id-card/v/unstable)](https://packagist.org/packages/leonis/id-card)
 [![Total Downloads](https://poser.pugx.org/leonis/id-card/downloads)](https://packagist.org/packages/leonis/id-card)
