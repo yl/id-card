@@ -10,13 +10,12 @@
 # IDCard
 身份证号校验及信息获取
 
-# 使用
 ## 安装
 ```
 $ composer require leonis/id-card
 ```
 
-## 用法
+## 使用
 ```php
 $idCard = new \Leonis\IDCard\IDCard($idCardNumber);
 
