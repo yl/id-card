@@ -179,9 +179,9 @@ class IDCard
             return false;
         }
 
-        $year = substr($this->id, 6, 4);
-        $month = substr($this->id, 10, 12);
-        $day = substr($this->id, 12, 14);
+        $year = $this->year();
+        $month = $this->month();
+        $day = $this->day();
 
         $age = 0;
         if (date('Y') > $year) {
