@@ -183,9 +183,9 @@ class IDCard
         $month = $this->month();
         $day = $this->day();
 
-        $nowYear = (int)date('Y');
-        $nowMonth = (int)date('n');
-        $nowDay = (int)date('j');
+        $nowYear = (int) date('Y');
+        $nowMonth = (int) date('n');
+        $nowDay = (int) date('j');
 
         $age = 0;
         if ($nowYear > $year) {
