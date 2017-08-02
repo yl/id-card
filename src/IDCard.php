@@ -175,10 +175,6 @@ class IDCard
      */
     public function age()
     {
-        if (!$this->check()) {
-            return false;
-        }
-
         $year = $this->year();
         $month = $this->month();
         $day = $this->day();
@@ -195,7 +191,7 @@ class IDCard
             $age++;
         }
 
-        return $age;
+        return $this->check() ? $age : false;
     }
 
     /**
