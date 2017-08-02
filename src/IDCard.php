@@ -191,10 +191,7 @@ class IDCard
         if ($nowYear > $year) {
             $age = $nowYear - $year - 1;
         }
-        if ($nowMonth > $month) {
-            $age++;
-        }
-        if ($nowMonth === $month && $nowDay >= $day) {
+        if ($nowMonth > $month || ($nowMonth === $month && $nowDay >= $day)) {
             $age++;
         }
 
