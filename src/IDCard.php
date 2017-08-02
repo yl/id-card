@@ -231,9 +231,8 @@ class IDCard
      */
     public function zodiac()
     {
-        $year = $this->year();
-        $index = $year > 1901 ? ($year - 1901) % 12 : (1901 - $year) % 12;
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
+        $index = abs($this->year()-1901) % 12;
 
         return $this->check() ? $zodiac[$index] : false;
     }
