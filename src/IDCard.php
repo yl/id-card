@@ -232,7 +232,7 @@ class IDCard
     public function zodiac()
     {
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
-        $index = abs($this->year()-1901) % 12;
+        $index = abs($this->year() - 1901) % 12;
 
         return $this->check() ? $zodiac[$index] : false;
     }
