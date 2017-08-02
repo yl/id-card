@@ -201,7 +201,7 @@ class IDCard
      */
     public function sex()
     {
-        return $this->check() ? (substr($this->id, 16, 1) % 2 ? '男' : '女') : false;
+        return $this->check() ? substr($this->id, 16, 1) % 2 ? '男' : '女' : false;
     }
 
     /**
@@ -211,10 +211,6 @@ class IDCard
      */
     public function constellation()
     {
-        if (!$this->check()) {
-            return false;
-        }
-
         $constellation = ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '魔羯座'];
         $constellationDays = [21, 20, 21, 20, 21, 22, 23, 23, 23, 24, 22, 21];
 
@@ -225,7 +221,7 @@ class IDCard
             $month--;
         }
 
-        return $month >= 0 ? $constellation[$month] : $constellation[11];
+        return $this->check() ? $month >= 0 ? $constellation[$month] : $constellation[11] : false;
     }
 
     /**
@@ -235,14 +231,10 @@ class IDCard
      */
     public function zodiac()
     {
-        if (!$this->check()) {
-            return false;
-        }
-
         $year = $this->year();
         $index = $year > 1901 ? ($year - 1901) % 12 : (1901 - $year) % 12;
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
 
-        return $zodiac[$index];
+        return $this->check() ? $zodiac[$index] : false;
     }
 }
