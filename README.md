@@ -19,10 +19,10 @@ $ composer require leonis/id-card
 ```php
 $idCard = new \Leonis\IDCard\IDCard($idCardNumber);
 
-$idCard->check();           // 验证身份号 return true or false
-$idCard->checkAreaCode();   // 验证行政区划代码 return true or false
-$idCard->checkBirthday();   // 验证生日 return true or false
-$idCard->checkCode();       // 验证校验码 return true or false
+$idCard->check();           // 验证身份号 return bool
+$idCard->checkAreaCode();   // 验证行政区划代码 return bool
+$idCard->checkBirthday();   // 验证生日 return bool
+$idCard->checkCode();       // 验证校验码 return bool
 $idCard->address();         // 获取地址 return string
 $idCard->province();        // 获取省 return string
 $idCard->city();            // 获取市 return string
