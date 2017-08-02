@@ -23,18 +23,18 @@ $idCard->check();           // 验证身份号 return true or false
 $idCard->checkAreaCode();   // 验证行政区划代码 return true or false
 $idCard->checkBirthday();   // 验证生日 return true or false
 $idCard->checkCode();       // 验证校验码 return true or false
-$idCard->address();         // 获取地址 return string or false
-$idCard->province();        // 获取省 return string or false
-$idCard->city();            // 获取市 return string or false
-$idCard->zone();            // 获取区 return string or false
-$idCard->birthday();        // 获取生日 return string or false
-$idCard->year();            // 获取年 return int or false
-$idCard->month();           // 获取月 return int or false
-$idCard->day();             // 获取日 return int or false
-$idCard->age();             // 获取年龄 return int or false
-$idCard->sex();             // 获取性别 return string or false
-$idCard->constellation();   // 获取星座 return string or false
-$idCard->zodiac();          // 获取属相 return string or false
+$idCard->address();         // 获取地址 return string
+$idCard->province();        // 获取省 return string
+$idCard->city();            // 获取市 return string
+$idCard->zone();            // 获取区 return string
+$idCard->birthday();        // 获取生日 return string
+$idCard->year();            // 获取年 return int
+$idCard->month();           // 获取月 return int
+$idCard->day();             // 获取日 return int
+$idCard->age();             // 获取年龄 return int
+$idCard->sex();             // 获取性别 return string
+$idCard->constellation();   // 获取星座 return string
+$idCard->zodiac();          // 获取属相 return string
 ```
  
 ## License
