@@ -9,14 +9,14 @@ class IDCard
      *
      * @var string
      */
-    private $id;
+    protected $id;
 
     /**
      * 行政区划代码
      *
      * @var array
      */
-    private $areaCodes;
+    protected $areaCodes;
 
     public function __construct(string $id)
     {
@@ -31,7 +31,7 @@ class IDCard
      */
     public function check()
     {
-        return ($this->checkAreaCode() && $this->checkBirthday() && $this->checkCode()) ? true : false;
+        return $this->checkAreaCode() && $this->checkBirthday() && $this->checkCode();
     }
 
     /**
@@ -131,7 +131,7 @@ class IDCard
      *
      * @param string $format
      *
-     * @return bool|string
+     * @return false|string
      */
     public function birthday(string $format)
     {
@@ -171,7 +171,7 @@ class IDCard
     /**
      * 获取年龄.
      *
-     * @return false|int|string
+     * @return bool|int
      */
     public function age()
     {
@@ -201,11 +201,11 @@ class IDCard
     /**
      * 获取性别.
      *
-     * @return bool|string 身份证号未通过验证返回 false
+     * @return bool|string
      */
     public function sex()
     {
-        return $this->check() ? (substr($this->id, 16, 1) % 2 === 0 ? '女' : '男') : false;
+        return $this->check() ? (substr($this->id, 16, 1) % 2 ? '男' : '女') : false;
     }
 
     /**
