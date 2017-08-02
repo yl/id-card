@@ -83,47 +83,47 @@ class IDCard
      *
      * @param string $separator
      *
-     * @return bool|string
+     * @return string
      */
     public function address(string $separator = '')
     {
-        return $this->check() ? $this->province().$separator.$this->city().$separator.$this->zone() : false;
+        return $this->province().$separator.$this->city().$separator.$this->zone();
     }
 
     /**
      * 获取省
      *
-     * @return bool|mixed
+     * @return mixed
      */
     public function province()
     {
         $provinceCode = substr($this->id, 0, 2).'0000';
 
-        return $this->check() ? $this->areaCodes[$provinceCode] : false;
+        return $this->areaCodes[$provinceCode];
     }
 
     /**
      * 获取市
      *
-     * @return bool|mixed
+     * @return mixed
      */
     public function city()
     {
         $cityCode = substr($this->id, 0, 4).'00';
 
-        return $this->check() ? $this->areaCodes[$cityCode] : false;
+        return $this->areaCodes[$cityCode];
     }
 
     /**
      * 获取区.
      *
-     * @return bool|mixed
+     * @return mixed
      */
     public function zone()
     {
         $areaCode = substr($this->id, 0, 6);
 
-        return $this->check() ? $this->areaCodes[$areaCode] : false;
+        return $this->areaCodes[$areaCode];
     }
 
     /**
@@ -171,7 +171,7 @@ class IDCard
     /**
      * 获取年龄.
      *
-     * @return bool|int
+     * @return int
      */
     public function age()
     {
@@ -188,23 +188,23 @@ class IDCard
             $age++;
         }
 
-        return $this->check() ? $age : false;
+        return $age;
     }
 
     /**
      * 获取性别.
      *
-     * @return bool|string
+     * @return string
      */
     public function sex()
     {
-        return $this->check() ? substr($this->id, 16, 1) % 2 ? '男' : '女' : false;
+        return substr($this->id, 16, 1) % 2 ? '男' : '女';
     }
 
     /**
      * 获取星座.
      *
-     * @return bool|mixed
+     * @return mixed
      */
     public function constellation()
     {
@@ -218,19 +218,19 @@ class IDCard
             $month--;
         }
 
-        return $this->check() ? $month >= 0 ? $constellation[$month] : $constellation[11] : false;
+        return $month >= 0 ? $constellation[$month] : $constellation[11];
     }
 
     /**
      * 获取属相.
      *
-     * @return bool|string
+     * @return string
      */
     public function zodiac()
     {
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
         $index = abs($this->year() - 1901) % 12;
 
-        return $this->check() ? $zodiac[$index] : false;
+        return $zodiac[$index];
     }
 }
