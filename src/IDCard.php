@@ -127,7 +127,7 @@ class IDCard
      *
      * @return string
      */
-    public function birthday(string $format) : string
+    public function birthday(string $format = 'Y-m-d') : string
     {
         return date($format, strtotime($this->year().'-'.$this->month().'-'.$this->day()));
     }
