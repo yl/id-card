@@ -29,7 +29,7 @@ class IDCard
      *
      * @return bool
      */
-    public function check()
+    public function check() : bool
     {
         return $this->checkAreaCode() && $this->checkBirthday() && $this->checkCode();
     }
@@ -39,7 +39,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkAreaCode()
+    public function checkAreaCode() : bool
     {
         $areaCode = substr($this->id, 0, 6);
 
@@ -51,7 +51,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkBirthday()
+    public function checkBirthday() : bool
     {
         $year = substr($this->id, 6, 4);
         $month = substr($this->id, 10, 2);
@@ -65,17 +65,17 @@ class IDCard
      *
      * @return bool
      */
-    public function checkCode()
+    public function checkCode() : bool
     {
         $weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
         $codes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
-        $code = substr($this->id, 17, 1);
+        $validate = substr($this->id, 0, 17);
         $sum = 0;
         for ($i = 0; $i < 17; $i++) {
-            $sum += substr(substr($this->id, 0, 17), $i, 1) * $weight[$i];
+            $sum += substr($validate, $i, 1) * $weight[$i];
         }
 
-        return $code == $codes[$sum % 11];
+        return $codes[$sum % 11] == substr($this->id, 17, 1);
     }
 
     /**
@@ -85,7 +85,7 @@ class IDCard
      *
      * @return string
      */
-    public function address(string $separator = '')
+    public function address(string $separator = '') : string
     {
         return $this->province().$separator.$this->city().$separator.$this->zone();
     }
@@ -93,37 +93,31 @@ class IDCard
     /**
      * 获取省
      *
-     * @return mixed
+     * @return string
      */
-    public function province()
+    public function province() : string
     {
-        $provinceCode = substr($this->id, 0, 2).'0000';
-
-        return $this->areaCodes[$provinceCode];
+        return $this->areaCodes[substr($this->id, 0, 2).'0000'];
     }
 
     /**
      * 获取市
      *
-     * @return mixed
+     * @return string
      */
-    public function city()
+    public function city() : string
     {
-        $cityCode = substr($this->id, 0, 4).'00';
-
-        return $this->areaCodes[$cityCode];
+        return $this->areaCodes[substr($this->id, 0, 4).'00'];
     }
 
     /**
      * 获取区.
      *
-     * @return mixed
+     * @return string
      */
-    public function zone()
+    public function zone() : string
     {
-        $areaCode = substr($this->id, 0, 6);
-
-        return $this->areaCodes[$areaCode];
+        return $this->areaCodes[substr($this->id, 0, 6)];
     }
 
     /**
@@ -131,9 +125,9 @@ class IDCard
      *
      * @param string $format
      *
-     * @return false|string
+     * @return string
      */
-    public function birthday(string $format)
+    public function birthday(string $format) : string
     {
         return date($format, strtotime($this->year().'-'.$this->month().'-'.$this->day()));
     }
@@ -143,7 +137,7 @@ class IDCard
      *
      * @return int
      */
-    public function year()
+    public function year() : int
     {
         return (int) substr($this->id, 6, 4);
     }
@@ -153,7 +147,7 @@ class IDCard
      *
      * @return int
      */
-    public function month()
+    public function month() : int
     {
         return (int) substr($this->id, 10, 2);
     }
@@ -163,7 +157,7 @@ class IDCard
      *
      * @return int
      */
-    public function day()
+    public function day() : int
     {
         return (int) substr($this->id, 12, 2);
     }
@@ -173,7 +167,7 @@ class IDCard
      *
      * @return int
      */
-    public function age()
+    public function age() : int
     {
         $year = $this->year();
         $month = $this->month();
@@ -196,7 +190,7 @@ class IDCard
      *
      * @return string
      */
-    public function sex()
+    public function sex() : string
     {
         return substr($this->id, 16, 1) % 2 ? '男' : '女';
     }
@@ -204,9 +198,9 @@ class IDCard
     /**
      * 获取星座.
      *
-     * @return mixed
+     * @return string
      */
-    public function constellation()
+    public function constellation() : string
     {
         $constellation = ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '魔羯座'];
         $constellationDays = [21, 20, 21, 20, 21, 22, 23, 23, 23, 24, 22, 21];
@@ -226,7 +220,7 @@ class IDCard
      *
      * @return string
      */
-    public function zodiac()
+    public function zodiac() : string
     {
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
         $index = abs($this->year() - 1901) % 12;
