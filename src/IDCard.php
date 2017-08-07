@@ -18,7 +18,7 @@ class IDCard
      */
     protected $areaCodes;
 
-    public function __construct(string $id)
+    public function __construct($id)
     {
         $this->id = strtoupper($id);
         $this->areaCodes = (array) require __DIR__.'/../data/codes.php';
@@ -29,7 +29,7 @@ class IDCard
      *
      * @return bool
      */
-    public function check() : bool
+    public function check()
     {
         return $this->checkAreaCode() && $this->checkBirthday() && $this->checkCode();
     }
@@ -39,7 +39,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkAreaCode() : bool
+    public function checkAreaCode()
     {
         $areaCode = substr($this->id, 0, 6);
 
@@ -51,7 +51,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkBirthday() : bool
+    public function checkBirthday()
     {
         $year = substr($this->id, 6, 4);
         $month = substr($this->id, 10, 2);
@@ -65,7 +65,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkCode() : bool
+    public function checkCode()
     {
         $weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
         $codes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
@@ -85,7 +85,7 @@ class IDCard
      *
      * @return string
      */
-    public function address(string $separator = '') : string
+    public function address($separator = '')
     {
         return $this->province().$separator.$this->city().$separator.$this->zone();
     }
@@ -95,7 +95,7 @@ class IDCard
      *
      * @return string
      */
-    public function province() : string
+    public function province()
     {
         return $this->areaCodes[substr($this->id, 0, 2).'0000'];
     }
@@ -105,7 +105,7 @@ class IDCard
      *
      * @return string
      */
-    public function city() : string
+    public function city()
     {
         return $this->areaCodes[substr($this->id, 0, 4).'00'];
     }
@@ -115,7 +115,7 @@ class IDCard
      *
      * @return string
      */
-    public function zone() : string
+    public function zone()
     {
         return $this->areaCodes[substr($this->id, 0, 6)];
     }
@@ -127,7 +127,7 @@ class IDCard
      *
      * @return string
      */
-    public function birthday(string $format) : string
+    public function birthday($format = 'Y-m-d')
     {
         return date($format, strtotime($this->year().'-'.$this->month().'-'.$this->day()));
     }
@@ -137,7 +137,7 @@ class IDCard
      *
      * @return int
      */
-    public function year() : int
+    public function year()
     {
         return (int) substr($this->id, 6, 4);
     }
@@ -147,7 +147,7 @@ class IDCard
      *
      * @return int
      */
-    public function month() : int
+    public function month()
     {
         return (int) substr($this->id, 10, 2);
     }
@@ -157,7 +157,7 @@ class IDCard
      *
      * @return int
      */
-    public function day() : int
+    public function day()
     {
         return (int) substr($this->id, 12, 2);
     }
@@ -167,7 +167,7 @@ class IDCard
      *
      * @return int
      */
-    public function age() : int
+    public function age()
     {
         $year = $this->year();
         $month = $this->month();
@@ -190,7 +190,7 @@ class IDCard
      *
      * @return string
      */
-    public function sex() : string
+    public function sex()
     {
         return substr($this->id, 16, 1) % 2 ? '男' : '女';
     }
@@ -200,7 +200,7 @@ class IDCard
      *
      * @return string
      */
-    public function constellation() : string
+    public function constellation()
     {
         $constellation = ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '魔羯座'];
         $constellationDays = [21, 20, 21, 20, 21, 22, 23, 23, 23, 24, 22, 21];
@@ -220,7 +220,7 @@ class IDCard
      *
      * @return string
      */
-    public function zodiac() : string
+    public function zodiac()
     {
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
         $index = abs($this->year() - 1901) % 12;
