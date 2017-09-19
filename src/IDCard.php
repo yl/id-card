@@ -31,7 +31,7 @@ class IDCard
      */
     public function check() : bool
     {
-        return $this->checkAreaCode() && $this->checkBirthday() && $this->checkCode();
+        return $this->checkBirthday() && $this->checkCode();
     }
 
     /**
