@@ -23,7 +23,7 @@ class IDCard
     public function __construct(string $id)
     {
         $this->id = strtoupper($id);
-        $this->areaCodes = (array)require __DIR__.'/../data/codes.php';
+        $this->areaCodes = (array) require __DIR__.'/../data/codes.php';
     }
 
     /**
@@ -36,6 +36,7 @@ class IDCard
         if ($this->isTrue === null) {
             $this->isTrue = $this->checkAreaCode() && $this->checkBirthday() && $this->checkCode();
         }
+
         return $this->isTrue;
     }
 
@@ -88,8 +89,9 @@ class IDCard
      *
      * @param string $separator
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function address(string $separator = ''): string
     {
@@ -99,14 +101,16 @@ class IDCard
     /**
      * 获取省
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function province(): string
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
+
         return $this->areaCodes[substr($this->id, 0, 2).'0000'];
     }
 
@@ -115,14 +119,16 @@ class IDCard
      *
      * @param string $separator
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function city(string $separator = ''): string
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
+
         return $separator.$this->areaCodes[substr($this->id, 0, 4).'00'];
     }
 
@@ -131,14 +137,16 @@ class IDCard
      *
      * @param string $separator
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function zone(string $separator = ''): string
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
+
         return $separator.$this->areaCodes[substr($this->id, 0, 6)];
     }
 
@@ -147,8 +155,9 @@ class IDCard
      *
      * @param string $format
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function birthday(string $format = 'Y-m-d'): string
     {
@@ -158,50 +167,57 @@ class IDCard
     /**
      * 获取年.
      *
-     * @return int
      * @throws BadIDCardException
+     *
+     * @return int
      */
     public function year(): int
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
-        return (int)substr($this->id, 6, 4);
+
+        return (int) substr($this->id, 6, 4);
     }
 
     /**
      * 获取月.
      *
-     * @return int
      * @throws BadIDCardException
+     *
+     * @return int
      */
     public function month(): int
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
-        return (int)substr($this->id, 10, 2);
+
+        return (int) substr($this->id, 10, 2);
     }
 
     /**
      * 获取日.
      *
-     * @return int
      * @throws BadIDCardException
+     *
+     * @return int
      */
     public function day(): int
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
-        return (int)substr($this->id, 12, 2);
+
+        return (int) substr($this->id, 12, 2);
     }
 
     /**
      * 获取年龄.
      *
-     * @return int
      * @throws BadIDCardException
+     *
+     * @return int
      */
     public function age(): int
     {
@@ -209,9 +225,9 @@ class IDCard
         $month = $this->month();
         $day = $this->day();
 
-        $nowYear = (int)date('Y');
-        $nowMonth = (int)date('n');
-        $nowDay = (int)date('j');
+        $nowYear = (int) date('Y');
+        $nowMonth = (int) date('n');
+        $nowDay = (int) date('j');
 
         $age = $nowYear > $year ? $nowYear - $year - 1 : 0;
         if ($nowMonth > $month || ($nowMonth === $month && $nowDay >= $day)) {
@@ -224,22 +240,25 @@ class IDCard
     /**
      * 获取性别.
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function sex(): string
     {
         if ($this->check() === false) {
             throw new BadIDCardException();
         }
+
         return substr($this->id, 16, 1) % 2 ? '男' : '女';
     }
 
     /**
      * 获取星座.
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function constellation(): string
     {
@@ -259,8 +278,9 @@ class IDCard
     /**
      * 获取属相.
      *
-     * @return string
      * @throws BadIDCardException
+     *
+     * @return string
      */
     public function zodiac(): string
     {
