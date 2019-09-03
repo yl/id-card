@@ -18,10 +18,12 @@ class IDCard
      */
     protected $areaCodes;
 
+    protected $isTrue;
+
     public function __construct(string $id)
     {
         $this->id = strtoupper($id);
-        $this->areaCodes = (array) require __DIR__.'/../data/codes.php';
+        $this->areaCodes = (array)require __DIR__.'/../data/codes.php';
     }
 
     /**
@@ -29,9 +31,12 @@ class IDCard
      *
      * @return bool
      */
-    public function check() : bool
+    public function check(): bool
     {
-        return $this->checkBirthday() && $this->checkCode();
+        if ($this->isTrue === null) {
+            $this->isTrue = $this->checkAreaCode() && $this->checkBirthday() && $this->checkCode();
+        }
+        return $this->isTrue;
     }
 
     /**
@@ -39,7 +44,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkAreaCode() : bool
+    public function checkAreaCode(): bool
     {
         $areaCode = substr($this->id, 0, 6);
 
@@ -51,7 +56,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkBirthday() : bool
+    public function checkBirthday(): bool
     {
         $year = substr($this->id, 6, 4);
         $month = substr($this->id, 10, 2);
@@ -65,7 +70,7 @@ class IDCard
      *
      * @return bool
      */
-    public function checkCode() : bool
+    public function checkCode(): bool
     {
         $weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
         $codes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
@@ -84,40 +89,57 @@ class IDCard
      * @param string $separator
      *
      * @return string
+     * @throws BadIDCardException
      */
-    public function address(string $separator = '') : string
+    public function address(string $separator = ''): string
     {
-        return $this->province().$separator.$this->city().$separator.$this->zone();
+        return $this->province().$this->city($separator).$this->zone($separator);
     }
 
     /**
      * 获取省
      *
      * @return string
+     * @throws BadIDCardException
      */
-    public function province() : string
+    public function province(): string
     {
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
         return $this->areaCodes[substr($this->id, 0, 2).'0000'];
     }
 
     /**
      * 获取市
      *
+     * @param string $separator
+     *
      * @return string
+     * @throws BadIDCardException
      */
-    public function city() : string
+    public function city(string $separator = ''): string
     {
-        return $this->areaCodes[substr($this->id, 0, 4).'00'];
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
+        return $separator.$this->areaCodes[substr($this->id, 0, 4).'00'];
     }
 
     /**
      * 获取区.
      *
+     * @param string $separator
+     *
      * @return string
+     * @throws BadIDCardException
      */
-    public function zone() : string
+    public function zone(string $separator = ''): string
     {
-        return $this->areaCodes[substr($this->id, 0, 6)];
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
+        return $separator.$this->areaCodes[substr($this->id, 0, 6)];
     }
 
     /**
@@ -126,8 +148,9 @@ class IDCard
      * @param string $format
      *
      * @return string
+     * @throws BadIDCardException
      */
-    public function birthday(string $format = 'Y-m-d') : string
+    public function birthday(string $format = 'Y-m-d'): string
     {
         return date($format, strtotime($this->year().'-'.$this->month().'-'.$this->day()));
     }
@@ -136,46 +159,59 @@ class IDCard
      * 获取年.
      *
      * @return int
+     * @throws BadIDCardException
      */
-    public function year() : int
+    public function year(): int
     {
-        return (int) substr($this->id, 6, 4);
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
+        return (int)substr($this->id, 6, 4);
     }
 
     /**
      * 获取月.
      *
      * @return int
+     * @throws BadIDCardException
      */
-    public function month() : int
+    public function month(): int
     {
-        return (int) substr($this->id, 10, 2);
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
+        return (int)substr($this->id, 10, 2);
     }
 
     /**
      * 获取日.
      *
      * @return int
+     * @throws BadIDCardException
      */
-    public function day() : int
+    public function day(): int
     {
-        return (int) substr($this->id, 12, 2);
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
+        return (int)substr($this->id, 12, 2);
     }
 
     /**
      * 获取年龄.
      *
      * @return int
+     * @throws BadIDCardException
      */
-    public function age() : int
+    public function age(): int
     {
         $year = $this->year();
         $month = $this->month();
         $day = $this->day();
 
-        $nowYear = (int) date('Y');
-        $nowMonth = (int) date('n');
-        $nowDay = (int) date('j');
+        $nowYear = (int)date('Y');
+        $nowMonth = (int)date('n');
+        $nowDay = (int)date('j');
 
         $age = $nowYear > $year ? $nowYear - $year - 1 : 0;
         if ($nowMonth > $month || ($nowMonth === $month && $nowDay >= $day)) {
@@ -189,9 +225,13 @@ class IDCard
      * 获取性别.
      *
      * @return string
+     * @throws BadIDCardException
      */
-    public function sex() : string
+    public function sex(): string
     {
+        if ($this->check() === false) {
+            throw new BadIDCardException();
+        }
         return substr($this->id, 16, 1) % 2 ? '男' : '女';
     }
 
@@ -199,8 +239,9 @@ class IDCard
      * 获取星座.
      *
      * @return string
+     * @throws BadIDCardException
      */
-    public function constellation() : string
+    public function constellation(): string
     {
         $constellation = ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '魔羯座'];
         $constellationDays = [21, 20, 21, 20, 21, 22, 23, 23, 23, 24, 22, 21];
@@ -219,8 +260,9 @@ class IDCard
      * 获取属相.
      *
      * @return string
+     * @throws BadIDCardException
      */
-    public function zodiac() : string
+    public function zodiac(): string
     {
         $zodiac = ['牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪', '鼠'];
         $index = abs($this->year() - 1901) % 12;

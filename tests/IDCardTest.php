@@ -74,7 +74,7 @@ class IDCardTest extends TestCase
 
     public function testAge()
     {
-        $this->assertEquals($this->IDCard->age(), 24);
+        $this->assertEquals($this->IDCard->age(), 26);
     }
 
     public function testSex()

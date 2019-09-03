@@ -10,6 +10,10 @@
 # IDCard
 身份证号校验及信息获取
 
+## 数据来源
+[http://www.mca.gov.cn/article/sj/xzqh](http://www.mca.gov.cn/article/sj/xzqh)
+> 更新时间：2019年7月
+
 ## 安装
 ```
 $ composer require leonis/id-card
