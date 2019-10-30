@@ -40,6 +40,11 @@ $idCard->sex();             // 获取性别 return string
 $idCard->constellation();   // 获取星座 return string
 $idCard->zodiac();          // 获取属相 return string
 ```
+
+## 手动更新数据
+```
+php vendor/leonis/id-card/data/query.php
+```
  
 ## License
 MIT

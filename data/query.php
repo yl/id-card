@@ -5,7 +5,14 @@ use QL\QueryList;
 require_once 'vendor/autoload.php';
 
 $urls = [
+    'http://www.mca.gov.cn/article/sj/tjyb/qgsj/2019/201909291543.html', // 2019-8
     'http://www.mca.gov.cn/article/sj/xzqh/2019/201908/201908271607.html', // 2019-7
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201908050812.html', //2019-6
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201906211421.html', //2019-5
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201905271424.html', // 2019-4
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201904301434.html', // 2019-3
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201903221437.html', // 2019-2
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201902061442.html', // 2019-1
     'http://www.mca.gov.cn/article/sj/xzqh/1980/201903/201903011447.html', // 2018
     'http://www.mca.gov.cn/article/sj/xzqh/1980/201803/201803131454.html', // 2017
     'http://www.mca.gov.cn/article/sj/xzqh/1980/201705/201705311652.html', // 2016
@@ -49,6 +56,7 @@ $urls = [
 
 $data = [];
 
+echo 'Updating...'.PHP_EOL;
 foreach (array_reverse($urls) as $i => $url) {
     echo $url.PHP_EOL;
     $table = QueryList::get($url)->find('table');
@@ -63,7 +71,8 @@ foreach (array_reverse($urls) as $i => $url) {
         }
     }
 }
+echo 'Done!'.PHP_EOL;
 
 ksort($data);
 
-file_put_contents('./data/codes.php', sprintf("<?php\nreturn %s;", var_export($data, true)));
+file_put_contents('./data/codes.php', sprintf("<?php\n\nreturn %s;\n", var_export($data, true)));

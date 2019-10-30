@@ -9,7 +9,7 @@ class IDCardTest extends TestCase
 
     public function setUp()
     {
-        $this->IDCard = new IDCard('421381199303052110');
+        $this->IDCard = new IDCard('42102319950217521X');
     }
 
     public function testCheck()
@@ -34,7 +34,7 @@ class IDCardTest extends TestCase
 
     public function testAddress()
     {
-        $this->assertEquals($this->IDCard->address(), '湖北省随州市广水市');
+        $this->assertEquals($this->IDCard->address(), '湖北省荆州市监利县');
     }
 
     public function testProvince()
@@ -44,37 +44,37 @@ class IDCardTest extends TestCase
 
     public function testCity()
     {
-        $this->assertEquals($this->IDCard->city(), '随州市');
+        $this->assertEquals($this->IDCard->city(), '荆州市');
     }
 
     public function testZone()
     {
-        $this->assertEquals($this->IDCard->zone(), '广水市');
+        $this->assertEquals($this->IDCard->zone(), '监利县');
     }
 
     public function testBirthday()
     {
-        $this->assertEquals($this->IDCard->birthday('Y-m-d'), '1993-03-05');
+        $this->assertEquals($this->IDCard->birthday('Y-m-d'), '1995-02-17');
     }
 
     public function testYear()
     {
-        $this->assertEquals($this->IDCard->year(), 1993);
+        $this->assertEquals($this->IDCard->year(), 1995);
     }
 
     public function testMonth()
     {
-        $this->assertEquals($this->IDCard->month(), 3);
+        $this->assertEquals($this->IDCard->month(), 2);
     }
 
     public function testDay()
     {
-        $this->assertEquals($this->IDCard->day(), 5);
+        $this->assertEquals($this->IDCard->day(), 17);
     }
 
     public function testAge()
     {
-        $this->assertEquals($this->IDCard->age(), 26);
+        $this->assertEquals($this->IDCard->age(), 24);
     }
 
     public function testSex()
@@ -84,11 +84,11 @@ class IDCardTest extends TestCase
 
     public function testConstellation()
     {
-        $this->assertEquals($this->IDCard->constellation(), '双鱼座');
+        $this->assertEquals($this->IDCard->constellation(), '水瓶座');
     }
 
     public function testZodiac()
     {
-        $this->assertEquals($this->IDCard->zodiac(), '鸡');
+        $this->assertEquals($this->IDCard->zodiac(), '猪');
     }
 }
