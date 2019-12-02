@@ -5,6 +5,8 @@ use QL\QueryList;
 require_once 'vendor/autoload.php';
 
 $urls = [
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/2019/201911250933.html', // 2019-10
+    'http://www.mca.gov.cn/article/sj/xzqh/2019/2019/201911051008.html', // 2019-9
     'http://www.mca.gov.cn/article/sj/tjyb/qgsj/2019/201909291543.html', // 2019-8
     'http://www.mca.gov.cn/article/sj/xzqh/2019/201908/201908271607.html', // 2019-7
     'http://www.mca.gov.cn/article/sj/xzqh/2019/201901-06/201908050812.html', //2019-6
