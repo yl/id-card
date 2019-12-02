@@ -12,7 +12,7 @@
 
 ## 数据来源
 [http://www.mca.gov.cn/article/sj/xzqh](http://www.mca.gov.cn/article/sj/xzqh)
-> 更新时间：2019年7月
+> 更新时间：2019年10月
 
 ## 安装
 ```
